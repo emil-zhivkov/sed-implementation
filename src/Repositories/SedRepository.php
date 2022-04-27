@@ -4,12 +4,20 @@ namespace Zhivkov\SedImplementation\Repositories;
 
 
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class SedRepository
 {
 
-    public function substitution(\Illuminate\Http\Request $request)
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Symfony\Component\HttpFoundation\StreamedResponse
+     * @throws \Exception
+     */
+    public function substitution(\Illuminate\Http\Request $request) :StreamedResponse
     {
         $this->validateRequest($request, 'search');
         $this->validateRequest($request, 'replace');
@@ -38,6 +46,15 @@ class SedRepository
         catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
+
+        Config::set('filesystems.disks.sed', [
+            'driver' => 'local',
+            'root' => public_path('/sed_files'),
+            'url' => env('APP_URL') . '/sed_files',
+            'visibility' => 'public',
+        ]);
+
+        return Storage::disk('sed')->download($filename);
     }
 
     /**
