@@ -3,7 +3,7 @@
     "autoload": {
         "psr-4": {
             "Zhivkov\\SedImplementation\\": "src/",
-            "Zhivkov\\SedImplementation\\Tests": "tests/"
+            "Zhivkov\\SedImplementation\\Tests\\": "tests/"
         }
     },
     "license":  "MIT",
