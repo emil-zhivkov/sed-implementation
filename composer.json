@@ -1,0 +1,24 @@
+{
+    "name": "emil-zhivkov/sed-implementation",
+    "autoload": {
+        "psr-4": {
+            "Zhivkov\\SedImplementation\\": "src/",
+            "Zhivkov\\SedImplementation\\Tests": "tests/"
+        }
+    },
+    "license":  "MIT",
+    "authors": [
+        {
+            "name": "Emil Zhivkov",
+            "email": "emo.zhivkov@gmail.com"
+        }
+    ],
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Zhivkov\\SedImplementation\\SedServiceProvider"
+            ]
+        }
+    }
+}
